@@ -1,0 +1,26 @@
+﻿<Window x:Class="Tester.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Tester"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="413" Width="812"
+        ResizeMode="NoResize">
+    <Grid>
+        <TextBox x:Name="tbOutput" HorizontalAlignment="Left" Height="300" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="500"/>
+        <TextBox x:Name="tbIp" HorizontalAlignment="Left" Height="23" Margin="10,315,0,0" TextWrapping="Wrap" Text="127.0.0.1" VerticalAlignment="Top" Width="70"/>
+        <TextBox x:Name="tbPort" HorizontalAlignment="Left" Height="23" Margin="85,315,0,0" TextWrapping="Wrap" Text="4444" VerticalAlignment="Top" Width="70"/>
+        <TextBox x:Name="tbPass" HorizontalAlignment="Left" Height="23" Margin="160,315,0,0" TextWrapping="Wrap" Text="password" VerticalAlignment="Top" Width="70"/>
+        <Button x:Name="btnCDC" Content="Connect" HorizontalAlignment="Left" Margin="10,343,0,0" VerticalAlignment="Top" Width="220" Click="connectClick"/>
+        <Button Content="Get Version" HorizontalAlignment="Left" Margin="235,315,0,0" VerticalAlignment="Top" Width="75" Height="48" Click="versionClick"/>
+        <Label x:Name="lblObsVersion" Content="Obs Version" HorizontalAlignment="Left" Margin="510,10,0,0" VerticalAlignment="Top" Width="276"/>
+        <Label x:Name="lblWsVersion" Content="Plugin Version" HorizontalAlignment="Left" Margin="510,36,0,0" VerticalAlignment="Top" Width="276"/>
+        <Label x:Name="lblVersion" Content="OBSWS Version" HorizontalAlignment="Left" Margin="510,62,0,0" VerticalAlignment="Top" Width="276"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="1" Margin="515,88,0,0" Stroke="Black" VerticalAlignment="Top" Width="271"/>
+        <Label x:Name="lblActiveScene" Content="Current scene" HorizontalAlignment="Left" Margin="510,89,0,0" VerticalAlignment="Top" Width="276"/>
+        <ComboBox x:Name="tbScenes" HorizontalAlignment="Left" Margin="515,115,0,0" VerticalAlignment="Top" Width="191"/>
+        <Button Content="Change To" HorizontalAlignment="Left" Margin="711,115,0,0" VerticalAlignment="Top" Width="75" Height="22" Click="changeClick"/>
+
+    </Grid>
+</Window>

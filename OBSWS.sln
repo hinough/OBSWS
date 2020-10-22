@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30330.147
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OBSWS", "OBSWS\OBSWS.csproj", "{EDE6AB93-E79A-4B11-B0F7-9877774D9355}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tester", "Tester\Tester.csproj", "{E27BCD29-3462-47D9-989C-666F4F53F971}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EDE6AB93-E79A-4B11-B0F7-9877774D9355}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDE6AB93-E79A-4B11-B0F7-9877774D9355}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDE6AB93-E79A-4B11-B0F7-9877774D9355}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDE6AB93-E79A-4B11-B0F7-9877774D9355}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E27BCD29-3462-47D9-989C-666F4F53F971}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E27BCD29-3462-47D9-989C-666F4F53F971}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E27BCD29-3462-47D9-989C-666F4F53F971}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E27BCD29-3462-47D9-989C-666F4F53F971}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0FB137D4-A11F-4DD0-AD01-88FAF7EB74D0}
+	EndGlobalSection
+EndGlobal
