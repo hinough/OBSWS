@@ -67,6 +67,12 @@ namespace OBSWS
                         break;
                     }
 
+                case EventType.scenecollectionchanged:
+                    {
+                        ws.Send(obs.generateRequest(RequestType.getscenelist));
+                        break;
+                    }
+
                 case EventType.sceneswitch:
                     {
                         onActiveSceneChanged?.Invoke(this, obs.updateActiveScene((string)eventdata["scene-name"]));

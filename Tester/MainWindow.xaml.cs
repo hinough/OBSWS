@@ -122,6 +122,8 @@ namespace Tester
         {
             this.Dispatcher.Invoke(() =>
             {
+                tbScenes.Items.Clear();
+
                 foreach(Scene scene in scenes) 
                 {
                     tbScenes.Items.Add(scene.name);
