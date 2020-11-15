@@ -69,6 +69,7 @@ namespace OBSWS
 
                 case EventType.scenecollectionchanged:
                     {
+                        ws.Send(obs.generateRequest(RequestType.getcurrentscenecollection));
                         ws.Send(obs.generateRequest(RequestType.getscenelist));
                         break;
                     }
@@ -118,6 +119,13 @@ namespace OBSWS
                             onInformation?.Invoke(this, new Information("No Authentication Required", "No Authentication Required", "handleResponse:getAuthReq"));
                             onConnect?.Invoke(this, new Connected("Connected to OBS", "Connected to OBS", "handleResponse:getAuthReq"));
                         }
+                        break;
+                    }
+
+                case RequestType.getcurrentscenecollection:
+                    {
+                        obs.currenctSceneCollection = (string)response["sc-name"];
+                        onSceneCollectionChanged?.Invoke(this, (string)response["sc-name"]);
                         break;
                     }
 
@@ -206,5 +214,8 @@ namespace OBSWS
         ///////////////SCENE EVENTS
         public event EventHandler<Scene> onActiveSceneChanged = null;
         public event EventHandler<List<Scene>> onSceneListChanged = null;
+
+        ///////////////SCENE COLLECTION EVENTS
+        public event EventHandler<string> onSceneCollectionChanged = null;
     }
 }

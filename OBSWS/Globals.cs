@@ -21,6 +21,8 @@ namespace OBSWS
         public const string getscenelist = "GetSceneList";
         public const string getversion = "GetVersion";
 
+        public const string getcurrentscenecollection = "GetCurrentSceneCollection";
+
         public const string setcurrentscene = "SetCurrentScene";
     }
 }

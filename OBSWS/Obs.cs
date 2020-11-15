@@ -183,6 +183,7 @@ namespace OBSWS
         public string obsver { get; set; }                  //OBS Studio version
 
         public Scene currentScene { get; set; }             //Current active scene in OBS
+        public string currenctSceneCollection { get; set; } //Current active scenecollection in OBS
         public List<Scene> scenes { get; set; }             //List of all scenes in OBS
 
         //////////////////////////////////////////////////////////////////////////////

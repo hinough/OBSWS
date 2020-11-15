@@ -49,6 +49,7 @@ namespace Tester
                     obs.onInformation += onInformation;
 
                     obs.onActiveSceneChanged += onActiveSceneChanged;
+                    obs.onSceneCollectionChanged += onSceneCollecionChanged;
                     obs.onSceneListChanged += onSceneListChanged;
 
                     obs.connect();
@@ -129,6 +130,16 @@ namespace Tester
                     tbScenes.Items.Add(scene.name);
                     tbScenes.SelectedIndex = 0;
                 }
+            });
+        }
+
+        private void onSceneCollecionChanged(object sender, string scname)
+        {
+            this.Dispatcher.Invoke(() =>
+            {
+                lblActiveCollection.Content = "Current scene collection: " + scname;
+                tbOutput.Text += "CHANGED SCENECOLLECTION TO: " +
+                                 scname + "\n";
             });
         }
     }
