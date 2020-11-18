@@ -21,6 +21,7 @@ namespace OBSWS
             this._port = port;
 
             scenes = new List<Scene>();
+            sceneCollections = new List<string>();
         }
 
         public string getIp()
@@ -111,6 +112,21 @@ namespace OBSWS
             return currentScene;
         }
 
+        public List<string> updateSceneCollectionList(Dictionary<string, object> response)
+        {
+            sclist = ((JArray)response["scene-collections"]).ToObject<List<SceneCollection>>();
+
+            sceneCollections.Clear();
+
+            foreach(SceneCollection sc in sclist)
+            {
+                sceneCollections.Add(sc.scname);
+            }
+
+
+            return sceneCollections;
+        }
+
 
 
         private string generateAuthString(string challenge, string salt)
@@ -172,6 +188,9 @@ namespace OBSWS
             return builder.ToString();
         }
 
+        ////////////////////////////////PRIVATE VALUES////////////////////////////////
+        private List<SceneCollection> sclist = null;
+        //////////////////////////////////////////////////////////////////////////////
         //////////////////////////////WEBSOCKET SETTINGS//////////////////////////////
         private string _ip = null;
         private string _port = null;
@@ -183,8 +202,9 @@ namespace OBSWS
         public string obsver { get; set; }                  //OBS Studio version
 
         public Scene currentScene { get; set; }             //Current active scene in OBS
-        public string currenctSceneCollection { get; set; } //Current active scenecollection in OBS
+        public string currentSceneCollection { get; set; }  //Current active scenecollection in OBS
         public List<Scene> scenes { get; set; }             //List of all scenes in OBS
+        public List<string> sceneCollections { get; set; }  //List of all scenecollections in OBS
 
         //////////////////////////////////////////////////////////////////////////////
     }

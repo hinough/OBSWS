@@ -50,6 +50,7 @@ namespace Tester
 
                     obs.onActiveSceneChanged += onActiveSceneChanged;
                     obs.onSceneCollectionChanged += onSceneCollecionChanged;
+                    obs.onSceneCollectionListChanged += onSceneCollectionListChanged;
                     obs.onSceneListChanged += onSceneListChanged;
 
                     obs.connect();
@@ -140,6 +141,20 @@ namespace Tester
                 lblActiveCollection.Content = "Current scene collection: " + scname;
                 tbOutput.Text += "CHANGED SCENECOLLECTION TO: " +
                                  scname + "\n";
+            });
+        }
+
+        private  void onSceneCollectionListChanged(object sender, List<string> scenecollections)
+        {
+            this.Dispatcher.Invoke(() =>
+            {
+                cbSceneCollection.Items.Clear();
+
+                foreach (string sc in scenecollections)
+                {
+                    cbSceneCollection.Items.Add(sc);
+                    cbSceneCollection.SelectedIndex = 0;
+                }
             });
         }
     }

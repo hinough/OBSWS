@@ -71,6 +71,15 @@ namespace OBSWS
                     {
                         ws.Send(obs.generateRequest(RequestType.getcurrentscenecollection));
                         ws.Send(obs.generateRequest(RequestType.getscenelist));
+                        ws.Send(obs.generateRequest(RequestType.listscenecollections));
+                        break;
+                    }
+
+                case EventType.scenecollectionlistchanged:
+                    {
+                        ws.Send(obs.generateRequest(RequestType.getcurrentscenecollection));
+                        ws.Send(obs.generateRequest(RequestType.getscenelist));
+                        ws.Send(obs.generateRequest(RequestType.listscenecollections));
                         break;
                     }
 
@@ -98,6 +107,8 @@ namespace OBSWS
                         {
                             onInformation?.Invoke(this, new Information("Authenticated", "Successfully authenticated", "handleResponse:authenticate"));
                             onConnect?.Invoke(this, new Connected("Connected to OBS", "Connected to OBS", "handleResponse:authenticate"));
+                            
+                            ws.Send(obs.generateRequest(RequestType.listscenecollections));
                             ws.Send(obs.generateRequest(RequestType.getscenelist));
                         }
                         else
@@ -118,13 +129,16 @@ namespace OBSWS
                         {
                             onInformation?.Invoke(this, new Information("No Authentication Required", "No Authentication Required", "handleResponse:getAuthReq"));
                             onConnect?.Invoke(this, new Connected("Connected to OBS", "Connected to OBS", "handleResponse:getAuthReq"));
+                            
+                            ws.Send(obs.generateRequest(RequestType.listscenecollections));
+                            ws.Send(obs.generateRequest(RequestType.getscenelist));
                         }
                         break;
                     }
 
                 case RequestType.getcurrentscenecollection:
                     {
-                        obs.currenctSceneCollection = (string)response["sc-name"];
+                        obs.currentSceneCollection = (string)response["sc-name"];
                         onSceneCollectionChanged?.Invoke(this, (string)response["sc-name"]);
                         break;
                     }
@@ -141,6 +155,13 @@ namespace OBSWS
                         obs.obscomp = (double)response["version"];
                         obs.obswsver = (string)response["obs-websocket-version"];
                         obs.obsver = (string)response["obs-studio-version"];
+                        break;
+                    }
+
+                case RequestType.listscenecollections:
+                    {
+                        onSceneCollectionListChanged?.Invoke(this, obs.updateSceneCollectionList(response));
+                        ws.Send(obs.generateRequest(RequestType.getcurrentscenecollection));
                         break;
                     }
 
@@ -217,5 +238,6 @@ namespace OBSWS
 
         ///////////////SCENE COLLECTION EVENTS
         public event EventHandler<string> onSceneCollectionChanged = null;
+        public event EventHandler<List<string>> onSceneCollectionListChanged = null;
     }
 }
