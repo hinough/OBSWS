@@ -55,6 +55,10 @@ namespace OBSWS
             ws.Send(obs.generateRequest(RequestType.setcurrentscene, name));
         }
 
+        public void setSceneCollection(string name)
+        {
+            ws.Send(obs.generateRequest(RequestType.setcurrentscenecollection, name));
+        }
 
 
         private void handleEvent(Dictionary<string, object> eventdata)
@@ -162,6 +166,12 @@ namespace OBSWS
                     {
                         onSceneCollectionListChanged?.Invoke(this, obs.updateSceneCollectionList(response));
                         ws.Send(obs.generateRequest(RequestType.getcurrentscenecollection));
+                        break;
+                    }
+
+                case RequestType.setcurrentscenecollection:
+                    {
+                        //Handled
                         break;
                     }
 

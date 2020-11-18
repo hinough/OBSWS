@@ -35,6 +35,11 @@ namespace Tester
             obs.setScene((string)tbScenes.SelectedItem);
         }
 
+        private void changescClick(object sender, RoutedEventArgs e)
+        {
+            obs.setSceneCollection((string)cbSceneCollection.SelectedItem);
+        }
+
         private void connectClick(object sender, RoutedEventArgs e)
         {
             if(btnCDC.Content.Equals("Connect"))

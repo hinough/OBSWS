@@ -81,6 +81,13 @@ namespace OBSWS
                         return generateJson(type, type, headers, values);
                     }
 
+                case RequestType.setcurrentscenecollection:
+                    {
+                        string[] headers = { "sc-name" };
+                        object[] values = { data };
+                        return generateJson(type, type, headers, values);
+                    }
+
                 default:
                     {
                         return generateJson(type, type);
