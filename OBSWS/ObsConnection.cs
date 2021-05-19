@@ -65,6 +65,12 @@ namespace OBSWS
         {
             switch(eventdata["update-type"])
             {
+                case EventType.exiting:
+                    {
+                        onInformation?.Invoke(this, new Information("OBS Closed", "OBS was closed", "handleEvent:exiting"));
+                        break;
+                    }
+
                 case EventType.sceneschanged:
                     {
                         ws.Send(obs.generateRequest(RequestType.getscenelist));

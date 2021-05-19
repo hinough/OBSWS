@@ -199,9 +199,9 @@ namespace OBSWS
         private List<SceneCollection> sclist = null;
         //////////////////////////////////////////////////////////////////////////////
         //////////////////////////////WEBSOCKET SETTINGS//////////////////////////////
-        private string _ip = null;
-        private string _port = null;
-        private string _pass = null;
+        private string _ip = null;                          //OBSWS Server IP
+        private string _port = null;                        //OBSWS Server Port
+        private string _pass = null;                        //OBSWS Server Password
         //////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////OBS VARIABLES////////////////////////////////
         public double obscomp { get; set; }                 //Compatible API version
@@ -212,7 +212,6 @@ namespace OBSWS
         public string currentSceneCollection { get; set; }  //Current active scenecollection in OBS
         public List<Scene> scenes { get; set; }             //List of all scenes in OBS
         public List<string> sceneCollections { get; set; }  //List of all scenecollections in OBS
-
         //////////////////////////////////////////////////////////////////////////////
     }
 }

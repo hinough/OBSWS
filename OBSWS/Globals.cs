@@ -6,6 +6,8 @@ namespace OBSWS
 {
     public static class EventType
     {
+        public const string exiting = "Exiting";
+
         public const string sceneschanged = "ScenesChanged";
         public const string scenecollectionchanged = "SceneCollectionChanged";
         public const string scenecollectionlistchanged = "SceneCollectionListChanged";
