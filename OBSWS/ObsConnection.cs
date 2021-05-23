@@ -50,6 +50,11 @@ namespace OBSWS
             return "V0.1 Alpha";
         }
 
+        public void sendChat(string message)
+        {
+            ws.Send(obs.generateRequest(RequestType.broadcastmessage, new customMessageData(CustomType.chat, message)));
+        }
+
         public void setScene(string name)
         {
             ws.Send(obs.generateRequest(RequestType.setcurrentscene, name));
@@ -65,6 +70,13 @@ namespace OBSWS
         {
             switch(eventdata["update-type"])
             {
+                case EventType.broadcastreceived:
+                    {
+                        onInformation?.Invoke(this, new Information("Received: ", (string)eventdata["realm"], (string)eventdata["realm"]));
+                        onCustomMessage?.Invoke(this, new CustomMessage((string)eventdata["realm"], eventdata["data"]));
+                        break;
+                    }
+        
                 case EventType.exiting:
                     {
                         onInformation?.Invoke(this, new Information("OBS Closed", "OBS was closed", "handleEvent:exiting"));
@@ -125,6 +137,12 @@ namespace OBSWS
                         {
                             onError?.Invoke(this, new Error("Wrong Password", "Given password was wrong","handleResponse:authenticate"));
                         }
+                        break;
+                    }
+
+                case RequestType.broadcastmessage:
+                    {
+                        onCustomMessage?.Invoke(this, new CustomMessage(CustomType.chatsent, ""));
                         break;
                     }
 
@@ -242,17 +260,20 @@ namespace OBSWS
             ws.Send(obs.generateRequest(RequestType.getversion));
         }
 
+        ////////////////////////////////////////CUSTOM MESSAGE EVENT///////////////////////////////////////
+        public event EventHandler<CustomMessage> onCustomMessage = null;
+
         ///////////////////////////////////////////EVENTHANDLERS///////////////////////////////////////////
         public event EventHandler<Connected> onConnect = null;
         public event EventHandler<Disconnected> onDisconnect = null;
         public event EventHandler<Error> onError = null;
         public event EventHandler<Information> onInformation = null;
 
-        ///////////////SCENE EVENTS
+        ////////////////////////////////////////////SCENE EVENTS////////////////////////////////////////////
         public event EventHandler<Scene> onActiveSceneChanged = null;
         public event EventHandler<List<Scene>> onSceneListChanged = null;
 
-        ///////////////SCENE COLLECTION EVENTS
+        ///////////////////////////////////////SCENE COLLECTION EVENTS//////////////////////////////////////
         public event EventHandler<string> onSceneCollectionChanged = null;
         public event EventHandler<List<string>> onSceneCollectionListChanged = null;
     }

@@ -54,6 +54,7 @@ namespace Tester
                     obs.onInformation += onInformation;
 
                     obs.onActiveSceneChanged += onActiveSceneChanged;
+                    obs.onCustomMessage += onCustomMessage;
                     obs.onSceneCollectionChanged += onSceneCollecionChanged;
                     obs.onSceneCollectionListChanged += onSceneCollectionListChanged;
                     obs.onSceneListChanged += onSceneListChanged;
@@ -65,6 +66,12 @@ namespace Tester
             {
                 obs.disconnect();
             }
+        }
+
+        private void sendClick(object sender, RoutedEventArgs e)
+        {
+
+            obs.sendChat(tbChatMessage.Text);
         }
 
         private void versionClick(object sender, RoutedEventArgs e)
@@ -82,6 +89,35 @@ namespace Tester
                                  connection.message + "\n";
 
                 btnCDC.Content = "Disconnect";
+            });
+        }
+
+        private void onCustomMessage(object sender, CustomMessage message)
+        {
+            this.Dispatcher.Invoke(() =>
+            {
+                switch (message.messagetype)
+                {
+                    case CustomType.chat:
+                        {
+                            tbChatOutput.Text += (string)message.data + "\n\n";
+                            break;
+                        }
+
+                    case CustomType.chatsent:
+                        {
+                            tbChatOutput.Text += tbChatMessage.Text + "\n\n";
+                            tbChatMessage.Clear();
+                            break;
+                        }
+
+                    default:
+                        {
+                            tbOutput.Text += "UNKNOWN CUSTOM TYPE: " +
+                                             message.messagetype + "\n";
+                            break;
+                        }
+                }
             });
         }
 

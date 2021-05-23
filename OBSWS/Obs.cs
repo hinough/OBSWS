@@ -73,6 +73,14 @@ namespace OBSWS
         {
             switch(type)
             {
+                case RequestType.broadcastmessage:
+                    {
+                        string[] headers = { "realm", "data" };
+                        object[] values = { ((EventTypes.customMessageData)data).messagetype, ((EventTypes.customMessageData)data).data };
+
+                        return generateJson(type, type, headers, values);
+                    }
+
                 case RequestType.setcurrentscene:
                     {
                         string[] headers = { "scene-name" };
@@ -85,6 +93,7 @@ namespace OBSWS
                     {
                         string[] headers = { "sc-name" };
                         object[] values = { data };
+
                         return generateJson(type, type, headers, values);
                     }
 

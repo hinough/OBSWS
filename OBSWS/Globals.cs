@@ -4,8 +4,16 @@ using System.Text;
 
 namespace OBSWS
 {
+    public static class CustomType
+    {
+        public const string chat = "chatmessage";
+        public const string chatsent = "chatsent";
+    }
+
     public static class EventType
     {
+        public const string broadcastreceived = "BroadcastCustomMessage";
+
         public const string exiting = "Exiting";
 
         public const string sceneschanged = "ScenesChanged";
@@ -17,7 +25,9 @@ namespace OBSWS
     public static class RequestType
     {
         public const string authenticate = "Authenticate";
-        
+
+        public const string broadcastmessage = "BroadcastCustomMessage";
+
         public const string getauthreq = "GetAuthRequired";
         public const string getstats = "GetStats";
         public const string getscenelist = "GetSceneList";
