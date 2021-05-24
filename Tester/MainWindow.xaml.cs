@@ -56,6 +56,7 @@ namespace Tester
 
                     obs.onActiveSceneChanged += onActiveSceneChanged;
                     obs.onCustomMessage += onCustomMessage;
+                    obs.onProfilechange += onProfileChanged;
                     obs.onSceneCollectionChanged += onSceneCollecionChanged;
                     obs.onSceneCollectionListChanged += onSceneCollectionListChanged;
                     obs.onSceneListChanged += onSceneListChanged;
@@ -161,6 +162,15 @@ namespace Tester
                 lblActiveScene.Content = "Current scene: " + active.name;
                 tbOutput.Text += "CHANGED SCENE TO: " +
                                  active.name + "\n";
+            });
+        }
+
+        private void onProfileChanged(object sender, string name)
+        {
+            this.Dispatcher.Invoke(() => {
+                lblActiveProfile.Content = "Current profile: " + name;
+                tbOutput.Text += "CHANGED PROFILE TO: " +
+                                 name + "\n";
             });
         }
 

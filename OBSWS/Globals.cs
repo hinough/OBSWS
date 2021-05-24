@@ -16,6 +16,9 @@ namespace OBSWS
 
         public const string exiting = "Exiting";
 
+        public const string profilechanged = "ProfileChanged";
+        public const string profilelistchanged = "ProfileListChanged";
+
         public const string sceneschanged = "ScenesChanged";
         public const string scenecollectionchanged = "SceneCollectionChanged";
         public const string scenecollectionlistchanged = "SceneCollectionListChanged";

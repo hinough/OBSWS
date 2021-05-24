@@ -83,6 +83,18 @@ namespace OBSWS
                         break;
                     }
 
+                case EventType.profilechanged:
+                    {
+                        onProfilechange?.Invoke(this, (string)eventdata["profile"]);
+                        break;
+                    }
+
+                case EventType.profilelistchanged:
+                    {
+
+                        break;
+                    }
+
                 case EventType.sceneschanged:
                     {
                         ws.Send(obs.generateRequest(RequestType.getscenelist));
@@ -247,7 +259,6 @@ namespace OBSWS
             if (response.ContainsKey("message-id"))
             {
                 handleResponse(response);
-                Console.Out.WriteLine(e.Data);
             }
             else if (response.ContainsKey("update-type"))
             {
@@ -269,6 +280,9 @@ namespace OBSWS
         public event EventHandler<Disconnected> onDisconnect = null;
         public event EventHandler<Error> onError = null;
         public event EventHandler<Information> onInformation = null;
+
+        ///////////////////////////////////////////PROFILE EVENTS///////////////////////////////////////////
+        public event EventHandler<string> onProfilechange = null;
 
         ////////////////////////////////////////////SCENE EVENTS////////////////////////////////////////////
         public event EventHandler<Scene> onActiveSceneChanged = null;

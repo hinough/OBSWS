@@ -207,8 +207,6 @@ namespace OBSWS
                 jWriter.WriteEndObject();
             }
 
-            Console.Out.WriteLine(builder.ToString());
-
             return builder.ToString();
         }
 

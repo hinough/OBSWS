@@ -21,12 +21,15 @@
         <Label x:Name="lblActiveScene" Content="Current scene" HorizontalAlignment="Left" Margin="315,89,0,0" VerticalAlignment="Top" Width="276"/>
         <ComboBox x:Name="tbScenes" HorizontalAlignment="Left" Margin="320,115,0,0" VerticalAlignment="Top" Width="191"/>
         <Button Content="Change To" HorizontalAlignment="Left" Margin="516,115,0,0" VerticalAlignment="Top" Width="75" Height="22" Click="changeClick"/>
-        <Label x:Name="lblActiveCollection" Content="Current scene collection" HorizontalAlignment="Left" Margin="320,142,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblActiveCollection" Content="Current scene collection" HorizontalAlignment="Left" Margin="315,142,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="cbSceneCollection" HorizontalAlignment="Left" Margin="320,168,0,0" VerticalAlignment="Top" Width="191"/>
         <Button Content="Change to" HorizontalAlignment="Left" Margin="516,168,0,0" VerticalAlignment="Top" Width="75" Height="22" Click="changescClick"/>
         <TextBox x:Name="tbChatOutput" HorizontalAlignment="Left" Height="300" Margin="601,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300"/>
         <Button Content="Send" HorizontalAlignment="Left" Margin="826,315,0,0" VerticalAlignment="Top" Width="75" Height="47" Click="sendClick"/>
         <TextBox x:Name="tbChatMessage" HorizontalAlignment="Left" Height="47" Margin="601,315,0,0" TextWrapping="Wrap" Text="chatmessage" VerticalAlignment="Top" Width="220"/>
+        <Label x:Name="lblActiveProfile" Content="Current profile" HorizontalAlignment="Left" Margin="315,195,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cbProfile" HorizontalAlignment="Left" Margin="320,221,0,0" VerticalAlignment="Top" Width="191"/>
+        <Button Content="Change to" HorizontalAlignment="Left" Margin="516,221,0,0" VerticalAlignment="Top" Width="75" Height="22"/>
 
     </Grid>
 </Window>
