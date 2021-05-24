@@ -81,9 +81,6 @@ namespace OBSWS
                             {"data", new JObject { {"A Chat", (string)((EventTypes.customMessageData)data).data } } }
                         };
 
-                        string[] headers = { "realm", "data" };
-                        object[] values = { ((EventTypes.customMessageData)data).messagetype, ((EventTypes.customMessageData)data).data };
-
                         return generateJson(type, type, add);
                     }
 
