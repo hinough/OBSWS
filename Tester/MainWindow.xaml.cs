@@ -1,4 +1,5 @@
-﻿using OBSWS;
+﻿using Newtonsoft.Json.Linq;
+using OBSWS;
 using OBSWS.EventTypes;
 using OBSWS.Types;
 using System;
@@ -100,12 +101,14 @@ namespace Tester
                 {
                     case CustomType.chat:
                         {
-                            tbChatOutput.Text += (string)message.data + "\n\n";
+                            Console.Out.WriteLine("Message Received");
+                            tbChatOutput.Text += (JValue)message.data.ToString() + "\n\n";
                             break;
                         }
 
                     case CustomType.chatsent:
                         {
+                            Console.Out.WriteLine("Message Sent");
                             tbChatOutput.Text += tbChatMessage.Text + "\n\n";
                             tbChatMessage.Clear();
                             break;

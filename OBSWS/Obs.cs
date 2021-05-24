@@ -75,10 +75,16 @@ namespace OBSWS
             {
                 case RequestType.broadcastmessage:
                     {
+                        var add = new JObject
+                        {
+                            {"realm", ((EventTypes.customMessageData)data).messagetype },
+                            {"data", new JObject { {"A Chat", (string)((EventTypes.customMessageData)data).data } } }
+                        };
+
                         string[] headers = { "realm", "data" };
                         object[] values = { ((EventTypes.customMessageData)data).messagetype, ((EventTypes.customMessageData)data).data };
 
-                        return generateJson(type, type, headers, values);
+                        return generateJson(type, type, add);
                     }
 
                 case RequestType.setcurrentscene:
@@ -99,7 +105,7 @@ namespace OBSWS
 
                 default:
                     {
-                        return generateJson(type, type);
+                        return generateJson(type, type, null, null);
                     }
             }
         }
@@ -195,13 +201,40 @@ namespace OBSWS
 
                         if (data[i].GetType() == typeof(string))
                             jWriter.WriteValue((string)data[i]);
+
+                        if (data[i].GetType() == typeof(JObject))
+                            jWriter.WriteValue((JObject)data[i]);
                     }
                 }
 
                 jWriter.WriteEndObject();
             }
 
+            Console.Out.WriteLine(builder.ToString());
+
             return builder.ToString();
+        }
+
+        private string generateJson(string header, string id, JObject additionaldata = null)
+        {
+            var body = new JObject
+            {
+                {"request-type", header },
+                {"message-id",  id}
+            };
+
+            if(additionaldata != null)
+            {
+                _ = new JsonMergeSettings
+                {
+                    MergeArrayHandling = MergeArrayHandling.Union
+                };
+
+                body.Merge(additionaldata);
+            }
+
+
+            return body.ToString();
         }
 
         ////////////////////////////////PRIVATE VALUES////////////////////////////////

@@ -247,6 +247,7 @@ namespace OBSWS
             if (response.ContainsKey("message-id"))
             {
                 handleResponse(response);
+                Console.Out.WriteLine(e.Data);
             }
             else if (response.ContainsKey("update-type"))
             {
