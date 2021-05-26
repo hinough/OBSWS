@@ -146,6 +146,30 @@ namespace OBSWS
                         break;
                     }
 
+                case EventType.replaystarted:
+                    {
+                        onReplayInformation?.Invoke(this, new Information("Replay Started", "Replay was started"));
+                        break;
+                    }
+
+                case EventType.replaystarting:
+                    {
+                        onReplayInformation?.Invoke(this, new Information("Replay Starting", "Replay is starting"));
+                        break;
+                    }
+
+                case EventType.replaystopped:
+                    {
+                        onReplayInformation?.Invoke(this, new Information("Replay Stopped", "Replay was stopped"));
+                        break;
+                    }
+
+                case EventType.replaystopping:
+                    {
+                        onReplayInformation?.Invoke(this, new Information("Replay Stopping", "Replay is stopping"));
+                        break;
+                    }
+
                 case EventType.sceneschanged:
                     {
                         ws.Send(obs.generateRequest(RequestType.getscenelist));
@@ -372,6 +396,7 @@ namespace OBSWS
         public event EventHandler<Error> onError = null;
         public event EventHandler<Information> onInformation = null;
         public event EventHandler<Information> onRecordingInformation = null;
+        public event EventHandler<Information> onReplayInformation = null;
         public event EventHandler<Information> onStreamingInformation = null;
 
         ///////////////////////////////////////////PROFILE EVENTS///////////////////////////////////////////

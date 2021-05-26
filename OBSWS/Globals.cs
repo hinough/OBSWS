@@ -26,6 +26,11 @@ namespace OBSWS
         public const string recordpaused = "RecordingPaused";
         public const string recordresumed = "RecordingResumed";
 
+        public const string replaystarting = "ReplayStarting";
+        public const string replaystarted = "ReplayStarted";
+        public const string replaystopping = "ReplayStopping";
+        public const string replaystopped = "ReplayStopped";
+
         public const string streamstarting = "StreamStarting";
         public const string streamstarted = "StreamStarted";
         public const string streamstopping = "StreamStopping";
