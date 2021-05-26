@@ -45,6 +45,16 @@ namespace OBSWS
             return obs.obswsver;
         }
 
+        public void getProfile()
+        {
+            ws.Send(obs.generateRequest(RequestType.getcurrentprofile));
+        }
+        
+        public void getProfileList()
+        {
+            ws.Send(obs.generateRequest(RequestType.listprofiles));
+        }
+
         public string getVersion()
         {
             return "V0.1 Alpha";
@@ -65,6 +75,10 @@ namespace OBSWS
             ws.Send(obs.generateRequest(RequestType.setcurrentscenecollection, name));
         }
 
+        public void setProfile(string name)
+        {
+            ws.Send(obs.generateRequest(RequestType.setcurrentprofile, name));
+        }
 
         private void handleEvent(Dictionary<string, object> eventdata)
         {
@@ -85,13 +99,50 @@ namespace OBSWS
 
                 case EventType.profilechanged:
                     {
+                        obs.currentProfile = (string)eventdata["profile"];
                         onProfilechange?.Invoke(this, (string)eventdata["profile"]);
                         break;
                     }
 
                 case EventType.profilelistchanged:
                     {
+                        onProfileListChange?.Invoke(this, obs.updateProfileList(eventdata, false));
+                        break;
+                    }
 
+                case EventType.recordpaused:
+                    {
+                        onRecordingInformation?.Invoke(this, new Information("Recording Paused", "Recording was paused"));
+                        break;
+                    }
+
+                case EventType.recordresumed:
+                    {
+                        onRecordingInformation?.Invoke(this, new Information("Recording Resumed", "Recording was resumed"));
+                        break;
+                    }
+
+                case EventType.recordstarted:
+                    {
+                        onRecordingInformation?.Invoke(this, new Information("Recording Started", "Recording was started", null, (string)eventdata["recordingFilename"]));
+                        break;
+                    }
+
+                case EventType.recordstarting:
+                    {
+                        onRecordingInformation?.Invoke(this, new Information("Recording Starting", "Recording is starting"));
+                        break;
+                    }
+
+                case EventType.recordstopped:
+                    {
+                        onRecordingInformation?.Invoke(this, new Information("Recording Stopped", "Recording was stopped", null, (string)eventdata["recordingFilename"]));
+                        break;
+                    }
+
+                case EventType.recordstopping:
+                    {
+                        onRecordingInformation?.Invoke(this, new Information("Recording Stopping", "Recording is stopping"));
                         break;
                     }
 
@@ -123,6 +174,30 @@ namespace OBSWS
                         break;
                     }
 
+                case EventType.streamstarted:
+                    {
+                        onStreamingInformation?.Invoke(this, new Information("Stream Started", "Stream was started"));
+                        break;
+                    }
+
+                case EventType.streamstarting:
+                    {
+                        onStreamingInformation?.Invoke(this, new Information("Stream Starting", "Stream is starting"));
+                        break;
+                    }
+
+                case EventType.streamstopped:
+                    {
+                        onStreamingInformation?.Invoke(this, new Information("Stream Stopped", "Stream was stopped"));
+                        break;
+                    }
+
+                case EventType.streamstopping:
+                    {
+                        onStreamingInformation?.Invoke(this, new Information("Stream Stopping", "Stream is stopping"));
+                        break;
+                    }
+
                 default:
                     {
                         onInformation?.Invoke(this, new Information("Unknown Event", "UNKNOWN EVENT: " + (string)eventdata["update-type"], "handleEvent:default"));
@@ -143,6 +218,7 @@ namespace OBSWS
                             onConnect?.Invoke(this, new Connected("Connected to OBS", "Connected to OBS", "handleResponse:authenticate"));
                             
                             ws.Send(obs.generateRequest(RequestType.listscenecollections));
+                            ws.Send(obs.generateRequest(RequestType.listprofiles));
                             ws.Send(obs.generateRequest(RequestType.getscenelist));
                         }
                         else
@@ -171,15 +247,23 @@ namespace OBSWS
                             onConnect?.Invoke(this, new Connected("Connected to OBS", "Connected to OBS", "handleResponse:getAuthReq"));
                             
                             ws.Send(obs.generateRequest(RequestType.listscenecollections));
+                            ws.Send(obs.generateRequest(RequestType.listprofiles));
                             ws.Send(obs.generateRequest(RequestType.getscenelist));
                         }
+                        break;
+                    }
+
+                case RequestType.getcurrentprofile:
+                    {
+                        obs.currentProfile = (string)response["profile-name"];
+                        onProfilechange?.Invoke(this, obs.currentProfile);
                         break;
                     }
 
                 case RequestType.getcurrentscenecollection:
                     {
                         obs.currentSceneCollection = (string)response["sc-name"];
-                        onSceneCollectionChanged?.Invoke(this, (string)response["sc-name"]);
+                        onSceneCollectionChanged?.Invoke(this, obs.currentSceneCollection);
                         break;
                     }
 
@@ -198,6 +282,12 @@ namespace OBSWS
                         break;
                     }
 
+                case RequestType.listprofiles:
+                    {
+                        onProfileListChange?.Invoke(this, obs.updateProfileList(response, true));
+                        break;
+                    }
+
                 case RequestType.listscenecollections:
                     {
                         onSceneCollectionListChanged?.Invoke(this, obs.updateSceneCollectionList(response));
@@ -205,6 +295,7 @@ namespace OBSWS
                         break;
                     }
 
+                case RequestType.setcurrentprofile:
                 case RequestType.setcurrentscenecollection:
                     {
                         //Handled
@@ -280,9 +371,12 @@ namespace OBSWS
         public event EventHandler<Disconnected> onDisconnect = null;
         public event EventHandler<Error> onError = null;
         public event EventHandler<Information> onInformation = null;
+        public event EventHandler<Information> onRecordingInformation = null;
+        public event EventHandler<Information> onStreamingInformation = null;
 
         ///////////////////////////////////////////PROFILE EVENTS///////////////////////////////////////////
         public event EventHandler<string> onProfilechange = null;
+        public event EventHandler<List<string>> onProfileListChange = null;
 
         ////////////////////////////////////////////SCENE EVENTS////////////////////////////////////////////
         public event EventHandler<Scene> onActiveSceneChanged = null;

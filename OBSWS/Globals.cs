@@ -19,6 +19,18 @@ namespace OBSWS
         public const string profilechanged = "ProfileChanged";
         public const string profilelistchanged = "ProfileListChanged";
 
+        public const string recordstarting = "RecordingStarting";
+        public const string recordstarted = "RecordingStarted";
+        public const string recordstopping = "RecordingStopping";
+        public const string recordstopped = "RecordingStopped";
+        public const string recordpaused = "RecordingPaused";
+        public const string recordresumed = "RecordingResumed";
+
+        public const string streamstarting = "StreamStarting";
+        public const string streamstarted = "StreamStarted";
+        public const string streamstopping = "StreamStopping";
+        public const string streamstopped = "StreamStopped";
+
         public const string sceneschanged = "ScenesChanged";
         public const string scenecollectionchanged = "SceneCollectionChanged";
         public const string scenecollectionlistchanged = "SceneCollectionListChanged";
@@ -39,6 +51,10 @@ namespace OBSWS
         public const string getcurrentscenecollection = "GetCurrentSceneCollection";
         public const string listscenecollections = "ListSceneCollections";
         public const string setcurrentscenecollection = "SetCurrentSceneCollection";
+
+        public const string listprofiles = "ListProfiles";
+        public const string getcurrentprofile = "GetCurrentProfile";
+        public const string setcurrentprofile = "SetCurrentProfile";
 
         public const string setcurrentscene = "SetCurrentScene";
     }

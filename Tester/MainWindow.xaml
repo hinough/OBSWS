@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Tester"
         mc:Ignorable="d"
-        Title="MainWindow" Height="413" Width="925.709"
+        Title="MainWindow" Height="470.4" Width="925.709"
         ResizeMode="NoResize">
     <Grid>
         <TextBox x:Name="tbOutput" HorizontalAlignment="Left" Height="300" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300"/>
@@ -29,7 +29,9 @@
         <TextBox x:Name="tbChatMessage" HorizontalAlignment="Left" Height="47" Margin="601,315,0,0" TextWrapping="Wrap" Text="chatmessage" VerticalAlignment="Top" Width="220"/>
         <Label x:Name="lblActiveProfile" Content="Current profile" HorizontalAlignment="Left" Margin="315,195,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="cbProfile" HorizontalAlignment="Left" Margin="320,221,0,0" VerticalAlignment="Top" Width="191"/>
-        <Button Content="Change to" HorizontalAlignment="Left" Margin="516,221,0,0" VerticalAlignment="Top" Width="75" Height="22"/>
+        <Button Content="Change to" HorizontalAlignment="Left" Margin="516,221,0,0" VerticalAlignment="Top" Width="75" Height="22" Click="changePClick"/>
+        <Label x:Name="lblRecordingStatus" Content="" HorizontalAlignment="Left" Margin="10,368,0,0" VerticalAlignment="Top" Width="891"/>
+        <Label x:Name="lblStreamStatus" Content="" HorizontalAlignment="Left" Margin="10,394,0,0" VerticalAlignment="Top" Width="891"/>
 
     </Grid>
 </Window>

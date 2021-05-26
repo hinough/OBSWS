@@ -84,6 +84,16 @@ namespace OBSWS
                         return generateJson(type, type, add);
                     }
 
+                case RequestType.getcurrentprofile:
+                    {
+                        return generateJson(type, type, null);
+                    }
+
+                case RequestType.listprofiles:
+                    {
+                        return generateJson(type, type, null);
+                    }
+
                 case RequestType.setcurrentscene:
                     {
                         string[] headers = { "scene-name" };
@@ -98,6 +108,16 @@ namespace OBSWS
                         object[] values = { data };
 
                         return generateJson(type, type, headers, values);
+                    }
+
+                case RequestType.setcurrentprofile:
+                    {
+                        var add = new JObject
+                        {
+                            { "profile-name", (string)data }
+                        };
+
+                        return generateJson(type, type, add);
                     }
 
                 default:
@@ -116,6 +136,26 @@ namespace OBSWS
             }
 
             return currentScene;
+        }
+
+        public List<string> updateProfileList(Dictionary<string, object> response, bool init)
+        {
+            if (profiles == null)
+                profiles = new List<string>();
+            else
+                profiles.Clear();
+
+            JArray items = ((JArray)response["profiles"]);
+            
+            foreach(JObject item in items)
+            {
+                if(init)
+                    profiles.Add(item.Value<string>("profile-name"));
+                else
+                    profiles.Add(item.Value<string>("name"));
+            }
+
+            return profiles;
         }
 
         public Scene updateScenelist(Dictionary<string, object> response)
@@ -244,9 +284,11 @@ namespace OBSWS
         public double obscomp { get; set; }                 //Compatible API version
         public string obswsver { get; set; }                //OBS Websockets plugin version
         public string obsver { get; set; }                  //OBS Studio version
-
+         
+        public string currentProfile { get; set; }          //Current active profile in OBS
         public Scene currentScene { get; set; }             //Current active scene in OBS
         public string currentSceneCollection { get; set; }  //Current active scenecollection in OBS
+        public List<string> profiles { get; set; }          //List of all profiles in OBS
         public List<Scene> scenes { get; set; }             //List of all scenes in OBS
         public List<string> sceneCollections { get; set; }  //List of all scenecollections in OBS
         //////////////////////////////////////////////////////////////////////////////

@@ -41,6 +41,11 @@ namespace Tester
             obs.setSceneCollection((string)cbSceneCollection.SelectedItem);
         }
 
+        private void changePClick(object sender, RoutedEventArgs e)
+        {
+            obs.setProfile((string)cbProfile.SelectedItem);
+        }
+
         private void connectClick(object sender, RoutedEventArgs e)
         {
             if(btnCDC.Content.Equals("Connect"))
@@ -57,6 +62,9 @@ namespace Tester
                     obs.onActiveSceneChanged += onActiveSceneChanged;
                     obs.onCustomMessage += onCustomMessage;
                     obs.onProfilechange += onProfileChanged;
+                    obs.onProfileListChange += onProfileListChanged;
+                    obs.onRecordingInformation += onRecordingInformation;
+                    obs.onStreamingInformation += onStreamingInformation;
                     obs.onSceneCollectionChanged += onSceneCollecionChanged;
                     obs.onSceneCollectionListChanged += onSceneCollectionListChanged;
                     obs.onSceneListChanged += onSceneListChanged;
@@ -92,6 +100,8 @@ namespace Tester
 
                 btnCDC.Content = "Disconnect";
             });
+
+            obs.getProfile();
         }
 
         private void onCustomMessage(object sender, CustomMessage message)
@@ -171,6 +181,38 @@ namespace Tester
                 lblActiveProfile.Content = "Current profile: " + name;
                 tbOutput.Text += "CHANGED PROFILE TO: " +
                                  name + "\n";
+            });
+        }
+
+        private void onProfileListChanged(object sender, List<string> profiles)
+        {
+            this.Dispatcher.Invoke(() =>
+            {
+                cbProfile.Items.Clear();
+
+                foreach(string profile in profiles)
+                {
+                    cbProfile.Items.Add(profile);
+                    cbProfile.SelectedIndex = 0;
+                }
+            });
+        }
+
+        private void onRecordingInformation(object sender, Information info)
+        {
+            this.Dispatcher.Invoke(() =>
+            {
+                lblRecordingStatus.Content = info.message;
+                if (info.filename != null)
+                    lblRecordingStatus.Content += " to " + info.filename;
+            });
+        }
+    
+        private void onStreamingInformation(object sender, Information info)
+        {
+            this.Dispatcher.Invoke(() =>
+            {
+                lblStreamStatus.Content = info.message;
             });
         }
 
