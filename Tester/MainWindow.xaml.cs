@@ -68,6 +68,10 @@ namespace Tester
                     obs.onSceneCollectionChanged += onSceneCollecionChanged;
                     obs.onSceneCollectionListChanged += onSceneCollectionListChanged;
                     obs.onSceneListChanged += onSceneListChanged;
+                    obs.onTransitionBegin += onTransitionBegin;
+                    obs.onTransitionChanged += onTransitionChanged;
+                    obs.onTransitionDurationChanged += onTransitionDurationChanged;
+                    obs.onTransitionListChanged += onTransitionListChanged;
 
                     obs.connect();
                 }
@@ -250,6 +254,41 @@ namespace Tester
                 {
                     cbSceneCollection.Items.Add(sc);
                     cbSceneCollection.SelectedIndex = 0;
+                }
+            });
+        }
+
+        private void onTransitionBegin(object sender, Transition transition)
+        {
+            this.Dispatcher.Invoke(() =>
+            {
+                tbOutput.Text += "Transition to scene " + transition.to + " has begun, duration: " + transition.duration + "ms\n";
+            });
+        }
+
+        private void onTransitionChanged(object sender, string name)
+        {
+            this.Dispatcher.Invoke(() => {
+                tbOutput.Text += "Transtiion switched to " + name + "\n";
+            });
+        }
+
+        private void onTransitionDurationChanged(object sender, long duration)
+        {
+            this.Dispatcher.Invoke(() => {
+                tbOutput.Text += "Transition duration is now " + duration + "ms\n";
+            });
+        }
+
+        private void onTransitionListChanged(object sender, List<string> transitions)
+        {
+            this.Dispatcher.Invoke(() =>
+            {
+                tbOutput.Text += "Transition list changed:\n";
+
+                foreach(string transition in transitions)
+                {
+                    tbOutput.Text += "\t" + transition + "\n";
                 }
             });
         }

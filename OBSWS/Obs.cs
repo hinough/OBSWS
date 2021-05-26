@@ -186,7 +186,22 @@ namespace OBSWS
             return sceneCollections;
         }
 
+        public List<string> updateTransitionList(Dictionary<string, object> response)
+        {
+            if (transitions == null)
+                transitions = new List<string>();
+            else
+                transitions.Clear();
 
+            JArray items = ((JArray)response["transitions"]);
+
+            foreach(JObject item in items)
+            {
+                transitions.Add(item.Value<string>("name"));
+            }
+
+            return transitions;
+        }
 
         private string generateAuthString(string challenge, string salt)
         {
@@ -291,6 +306,7 @@ namespace OBSWS
         public List<string> profiles { get; set; }          //List of all profiles in OBS
         public List<Scene> scenes { get; set; }             //List of all scenes in OBS
         public List<string> sceneCollections { get; set; }  //List of all scenecollections in OBS
+        public List<string> transitions { get; set; }       //List of all transitions in OBS
         //////////////////////////////////////////////////////////////////////////////
     }
 }

@@ -40,6 +40,11 @@ namespace OBSWS
         public const string scenecollectionchanged = "SceneCollectionChanged";
         public const string scenecollectionlistchanged = "SceneCollectionListChanged";
         public const string sceneswitch = "SwitchScenes";
+
+        public const string transitionbegin = "TransitionBegin";
+        public const string transitionswitch = "SwitchTransition";
+        public const string transitionlist = "TransitionListChanged";
+        public const string transitionduration = "TransitionDurationChanged";
     }
 
     public static class RequestType

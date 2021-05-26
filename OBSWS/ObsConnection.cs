@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using OBSWS.EventTypes;
 using OBSWS.Types;
 using System;
@@ -222,6 +223,30 @@ namespace OBSWS
                         break;
                     }
 
+                case EventType.transitionbegin:
+                    {
+                        onTransitionBegin?.Invoke(this, new Transition((string)eventdata["name"], (string)eventdata["type"], (string)eventdata["from-scene"], (string)eventdata["to-scene"], (long)eventdata["duration"]));
+                        break;
+                    }
+
+                case EventType.transitionswitch:
+                    {
+                        onTransitionChanged?.Invoke(this, (string)eventdata["transition-name"]);
+                        break;
+                    }
+
+                case EventType.transitionlist:
+                    {
+                        onTransitionListChanged?.Invoke(this, obs.updateTransitionList(eventdata));
+                        break;
+                    }
+
+                case EventType.transitionduration:
+                    {
+                        onTransitionDurationChanged?.Invoke(this, (long)eventdata["new-duration"]);
+                        break;
+                    }
+
                 default:
                     {
                         onInformation?.Invoke(this, new Information("Unknown Event", "UNKNOWN EVENT: " + (string)eventdata["update-type"], "handleEvent:default"));
@@ -373,10 +398,12 @@ namespace OBSWS
 
             if (response.ContainsKey("message-id"))
             {
+                //Console.Out.WriteLine(e.Data);
                 handleResponse(response);
             }
             else if (response.ContainsKey("update-type"))
             {
+                //Console.Out.WriteLine(e.Data);
                 handleEvent(response);
             }
         }
@@ -410,5 +437,11 @@ namespace OBSWS
         ///////////////////////////////////////SCENE COLLECTION EVENTS//////////////////////////////////////
         public event EventHandler<string> onSceneCollectionChanged = null;
         public event EventHandler<List<string>> onSceneCollectionListChanged = null;
+
+        //////////////////////////////////////////TRANSITION EVENTS/////////////////////////////////////////
+        public event EventHandler<Transition> onTransitionBegin = null;
+        public event EventHandler<string> onTransitionChanged = null;
+        public event EventHandler<long> onTransitionDurationChanged = null;
+        public event EventHandler<List<string>> onTransitionListChanged = null;
     }
 }
