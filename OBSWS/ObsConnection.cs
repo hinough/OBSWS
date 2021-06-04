@@ -56,6 +56,11 @@ namespace OBSWS
             ws.Send(obs.generateRequest(RequestType.listprofiles));
         }
 
+        public void getStats()
+        {
+            ws.Send(obs.generateRequest(RequestType.getstats));
+        }
+
         public string getVersion()
         {
             return "V0.1 Alpha";
@@ -95,6 +100,16 @@ namespace OBSWS
                 case EventType.exiting:
                     {
                         onInformation?.Invoke(this, new Information("OBS Closed", "OBS was closed", "handleEvent:exiting"));
+                        break;
+                    }
+
+                case EventType.heartbeat:
+                    {
+                        /*onHeartbeat?.Invoke(this, new Heartbeat((bool)eventdata["pulse"], (bool)eventdata["recording"], (bool)eventdata["streaming"],
+                                                                (string)eventdata["current-profile"], (string)eventdata["current-scene"], 
+                                                                (long)eventdata["total-stream-time"], (long)eventdata["total-stream-bytes"], (long)eventdata["total-stream-frames"],
+                                                                (long)eventdata["total-record-time"], (long)eventdata["total-record-bytes"], (long)eventdata["total-record-frames"],
+                                                                (JObject)eventdata["stats"]));*/
                         break;
                     }
 
@@ -343,6 +358,12 @@ namespace OBSWS
                         break;
                     }
 
+                case RequestType.getstats:
+                    {
+
+                        break;
+                    }
+
                 case RequestType.listprofiles:
                     {
                         onProfileListChange?.Invoke(this, obs.updateProfileList(response, true));
@@ -410,6 +431,11 @@ namespace OBSWS
 
             if (response.ContainsKey("message-id"))
             {
+                if (response["message-id"].Equals(RequestType.getstats))
+                {
+                    ObsStats stats = ((JObject)response["stats"]).ToObject<ObsStats>();
+                    onStats?.Invoke(this, stats);
+                }
                 //Console.Out.WriteLine(e.Data);
                 handleResponse(response);
             }
@@ -426,8 +452,9 @@ namespace OBSWS
             ws.Send(obs.generateRequest(RequestType.getversion));
         }
 
-        ////////////////////////////////////////CUSTOM MESSAGE EVENT///////////////////////////////////////
+        ///////////////////////////////////////////GENERAL EVENT///////////////////////////////////////////
         public event EventHandler<CustomMessage> onCustomMessage = null;
+        public event EventHandler<ObsStats> onStats = null;
 
         ///////////////////////////////////////////EVENTHANDLERS///////////////////////////////////////////
         public event EventHandler<Connected> onConnect = null;

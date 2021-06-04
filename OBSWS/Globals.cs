@@ -13,6 +13,7 @@ namespace OBSWS
     public static class EventType
     {
         public const string broadcastreceived = "BroadcastCustomMessage";
+        public const string heartbeat = "Heartbeat";
 
         public const string exiting = "Exiting";
 
@@ -54,6 +55,7 @@ namespace OBSWS
         public const string authenticate = "Authenticate";
 
         public const string broadcastmessage = "BroadcastCustomMessage";
+        public const string setheartbeat = "SetHeartbeat";
 
         public const string getauthreq = "GetAuthRequired";
         public const string getstats = "GetStats";

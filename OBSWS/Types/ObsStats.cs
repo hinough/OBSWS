@@ -49,5 +49,24 @@ namespace OBSWS.Types
             this.rendermissed = rendermissed;
             this.rendertotal = rendertotal;
         }
+
+        public string getData()
+        {
+            string output = "OBS STATS:\n";
+
+            output += "\tCPU Load: " + cpu + "%\n";
+            output += "\tRAM Use: " + memory + "Mb\n";
+            output += "\tFree Disk Space: " + disk + "Mb\n";
+            output += "\t=================================\n";
+            output += "\tCurrent FPS: " + fps + "\n";
+            output += "\tCurrent Frametime: " + frametime + "\n";
+            output += "\t=================================\n";
+            output += "\tTotal Frames: " + outputtotal + "\n";
+            output += "\tSkipped Frames: " + outputskipped + "\n";
+            output += "\tTotal Rendered: " + rendertotal + "\n";
+            output += "\tSkipped Rendered: " + rendermissed;
+
+            return output;
+        }
     }
 }

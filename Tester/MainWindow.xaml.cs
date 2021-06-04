@@ -58,6 +58,7 @@ namespace Tester
                     obs.onDisconnect += onDisconnection;
                     obs.onError += onError;
                     obs.onInformation += onInformation;
+                    obs.onStats += onStats;
 
                     obs.onActiveSceneChanged += onActiveSceneChanged;
                     obs.onCustomMessage += onCustomMessage;
@@ -86,6 +87,11 @@ namespace Tester
         {
 
             obs.sendChat(tbChatMessage.Text);
+        }
+
+        private void statsClick(object sender, RoutedEventArgs e)
+        {
+            obs.getStats();
         }
 
         private void versionClick(object sender, RoutedEventArgs e)
@@ -168,6 +174,13 @@ namespace Tester
             });
         }
 
+        private void onStats(object sender, ObsStats stats)
+        {
+            this.Dispatcher.Invoke(() =>
+            {
+                tbOutput.Text += stats.getData() + "\n";
+            });
+        }
 
         private void onActiveSceneChanged(object sender, Scene active)
         {
