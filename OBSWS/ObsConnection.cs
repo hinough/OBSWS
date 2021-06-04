@@ -229,6 +229,18 @@ namespace OBSWS
                         break;
                     }
 
+                case EventType.transitionend:
+                    {
+                        onTransitionEnd?.Invoke(this, new Transition((string)eventdata["name"], (string)eventdata["type"], null, (string)eventdata["to-scene"], (long)eventdata["duration"]));
+                        break;
+                    }
+
+                case EventType.transitionvideoend:
+                    {
+                        onTransitionEnd?.Invoke(this, new Transition((string)eventdata["name"], (string)eventdata["type"], (string)eventdata["from-scene"], (string)eventdata["to-scene"], (long)eventdata["duration"]));
+                        break;
+                    }
+
                 case EventType.transitionswitch:
                     {
                         onTransitionChanged?.Invoke(this, (string)eventdata["transition-name"]);
@@ -440,6 +452,7 @@ namespace OBSWS
 
         //////////////////////////////////////////TRANSITION EVENTS/////////////////////////////////////////
         public event EventHandler<Transition> onTransitionBegin = null;
+        public event EventHandler<Transition> onTransitionEnd = null;
         public event EventHandler<string> onTransitionChanged = null;
         public event EventHandler<long> onTransitionDurationChanged = null;
         public event EventHandler<List<string>> onTransitionListChanged = null;
