@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30330.147
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31521.260
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OBSWS", "OBSWS\OBSWS.csproj", "{EDE6AB93-E79A-4B11-B0F7-9877774D9355}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OBSWS_OLD", "OBSWS\OBSWS_OLD.csproj", "{EDE6AB93-E79A-4B11-B0F7-9877774D9355}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tester", "Tester\Tester.csproj", "{E27BCD29-3462-47D9-989C-666F4F53F971}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KrogerDev", "KrogerDev\KrogerDev.csproj", "{A7CDA5E6-A209-46BD-9E27-66FBF4CFA3F1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{E27BCD29-3462-47D9-989C-666F4F53F971}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E27BCD29-3462-47D9-989C-666F4F53F971}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E27BCD29-3462-47D9-989C-666F4F53F971}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7CDA5E6-A209-46BD-9E27-66FBF4CFA3F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7CDA5E6-A209-46BD-9E27-66FBF4CFA3F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7CDA5E6-A209-46BD-9E27-66FBF4CFA3F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7CDA5E6-A209-46BD-9E27-66FBF4CFA3F1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

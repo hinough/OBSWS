@@ -99,9 +99,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\OBSWS\OBSWS.csproj">
-      <Project>{ede6ab93-e79a-4b11-b0f7-9877774d9355}</Project>
-      <Name>OBSWS</Name>
+    <ProjectReference Include="..\KrogerDev\KrogerDev.csproj">
+      <Project>{a7cda5e6-a209-46bd-9e27-66fbf4cfa3f1}</Project>
+      <Name>KrogerDev</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

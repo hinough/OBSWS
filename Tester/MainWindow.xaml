@@ -8,31 +8,6 @@
         Title="MainWindow" Height="470.4" Width="925.709"
         ResizeMode="NoResize">
     <Grid>
-        <TextBox x:Name="tbOutput" HorizontalAlignment="Left" Height="300" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300"/>
-        <TextBox x:Name="tbIp" HorizontalAlignment="Left" Height="23" Margin="10,315,0,0" TextWrapping="Wrap" Text="127.0.0.1" VerticalAlignment="Top" Width="70"/>
-        <TextBox x:Name="tbPort" HorizontalAlignment="Left" Height="23" Margin="85,315,0,0" TextWrapping="Wrap" Text="4444" VerticalAlignment="Top" Width="70"/>
-        <TextBox x:Name="tbPass" HorizontalAlignment="Left" Height="23" Margin="160,315,0,0" TextWrapping="Wrap" Text="password" VerticalAlignment="Top" Width="70"/>
-        <Button x:Name="btnCDC" Content="Connect" HorizontalAlignment="Left" Margin="10,343,0,0" VerticalAlignment="Top" Width="220" Click="connectClick"/>
-        <Button Content="Get Version" HorizontalAlignment="Left" Margin="235,315,0,0" VerticalAlignment="Top" Width="75" Height="48" Click="versionClick"/>
-        <Label x:Name="lblObsVersion" Content="Obs Version" HorizontalAlignment="Left" Margin="315,10,0,0" VerticalAlignment="Top" Width="276"/>
-        <Label x:Name="lblWsVersion" Content="Plugin Version" HorizontalAlignment="Left" Margin="315,36,0,0" VerticalAlignment="Top" Width="276"/>
-        <Label x:Name="lblVersion" Content="OBSWS Version" HorizontalAlignment="Left" Margin="315,63,0,0" VerticalAlignment="Top" Width="276"/>
-        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="1" Margin="320,88,0,0" Stroke="Black" VerticalAlignment="Top" Width="271"/>
-        <Label x:Name="lblActiveScene" Content="Current scene" HorizontalAlignment="Left" Margin="315,89,0,0" VerticalAlignment="Top" Width="276"/>
-        <ComboBox x:Name="tbScenes" HorizontalAlignment="Left" Margin="320,115,0,0" VerticalAlignment="Top" Width="191"/>
-        <Button Content="Change To" HorizontalAlignment="Left" Margin="516,115,0,0" VerticalAlignment="Top" Width="75" Height="22" Click="changeClick"/>
-        <Label x:Name="lblActiveCollection" Content="Current scene collection" HorizontalAlignment="Left" Margin="315,142,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="cbSceneCollection" HorizontalAlignment="Left" Margin="320,168,0,0" VerticalAlignment="Top" Width="191"/>
-        <Button Content="Change to" HorizontalAlignment="Left" Margin="516,168,0,0" VerticalAlignment="Top" Width="75" Height="22" Click="changescClick"/>
-        <TextBox x:Name="tbChatOutput" HorizontalAlignment="Left" Height="300" Margin="601,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300"/>
-        <Button Content="Send" HorizontalAlignment="Left" Margin="826,315,0,0" VerticalAlignment="Top" Width="75" Height="47" Click="sendClick"/>
-        <TextBox x:Name="tbChatMessage" HorizontalAlignment="Left" Height="47" Margin="601,315,0,0" TextWrapping="Wrap" Text="chatmessage" VerticalAlignment="Top" Width="220"/>
-        <Label x:Name="lblActiveProfile" Content="Current profile" HorizontalAlignment="Left" Margin="315,195,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="cbProfile" HorizontalAlignment="Left" Margin="320,221,0,0" VerticalAlignment="Top" Width="191"/>
-        <Button Content="Change to" HorizontalAlignment="Left" Margin="516,221,0,0" VerticalAlignment="Top" Width="75" Height="22" Click="changePClick"/>
-        <Label x:Name="lblRecordingStatus" Content="" HorizontalAlignment="Left" Margin="10,368,0,0" VerticalAlignment="Top" Width="891"/>
-        <Label x:Name="lblStreamStatus" Content="" HorizontalAlignment="Left" Margin="10,394,0,0" VerticalAlignment="Top" Width="891"/>
-        <Button Content="Get Stats" HorizontalAlignment="Left" Margin="315,315,0,0" VerticalAlignment="Top" Width="75" Height="48" Click="statsClick"/>
 
     </Grid>
 </Window>
