@@ -8,6 +8,35 @@
         Title="MainWindow" Height="470.4" Width="925.709"
         ResizeMode="NoResize">
     <Grid>
+        <TextBox x:Name="tbIP" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" Text="IP Address" VerticalAlignment="Top" Width="150"/>
+        <TextBox x:Name="tbPort" HorizontalAlignment="Left" Height="23" Margin="165,10,0,0" TextWrapping="Wrap" Text="Port" VerticalAlignment="Top" Width="70"/>
+        <Separator HorizontalAlignment="Left" Height="10" Margin="230,17,0,0" VerticalAlignment="Top" Width="21
+                   " RenderTransformOrigin="0.5,0.5">
+            <Separator.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Separator.RenderTransform>
+        </Separator>
+        <TextBox x:Name="tbPassword" HorizontalAlignment="Left" Height="23" Margin="247,10,0,0" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top" Width="150"/>
+        <Button x:Name="btnCDC" Content="Connect" HorizontalAlignment="Left" Margin="402,10,0,0" VerticalAlignment="Top" Width="100" Height="23" Click="btnCDC_Click"/>
+        <TextBox x:Name="tbEvents" HorizontalAlignment="Left" Height="379" Margin="10,38,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="240" IsEnabled="False"/>
+        <TextBox x:Name="tbRequests" HorizontalAlignment="Left" Height="379" Margin="262,38,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="240" IsEnabled="False"/>
+        <Separator VerticalAlignment="Top" Height="10" Margin="305,209,211,0" Width="404" RenderTransformOrigin="0.5,0.5">
+            <Separator.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Separator.RenderTransform>
+        </Separator>
+        <ComboBox HorizontalAlignment="Left" Margin="513,11,0,0" VerticalAlignment="Top" Width="284"/>
+        <Button x:Name="btnChScene" Content="Change Scene" HorizontalAlignment="Left" Margin="802,10,0,0" VerticalAlignment="Top" Width="100" Height="23"/>
 
     </Grid>
 </Window>
